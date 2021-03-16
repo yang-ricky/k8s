@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="renderer" content="webkit">
+<title>EF</title>
+<link rel="stylesheet" type="text/css" href="getContext::configuration.servers.cache/_shared/gudstrap/1.1.1-ef.1/css/gudstrap.css" media="all"/>
+<link rel="stylesheet" type="text/css" href="getContext::configuration.servers.cache/_shared/headerfooter/0.9.5/css/main.min.css" media="all"/>
+<!--{CONFIG:OLDPLATFORM>>}-->
+<link rel="stylesheet" type="text/css" href="getContext::configuration.servers.cache/_shared/evc-ui-app-room/{CCL:evc.ui.e15classroom.version}/css/main.css" media="all" />
+<!--{CONFIG:OLDPLATFORM<<}-->
+<!--{CONFIG:NEWPLATFORM>>}
+<link rel="stylesheet" type="text/css" href="getContext::configuration.servers.cache/iframed-classes/{CONT_IMG_VER}/evc-ui-app-room/css/main.css" media="all" />
+<!--{CONFIG:NEWPLATFORM<<}-->
+<script type="text/javascript" src="getContext::configuration.servers.cache/_shared/require.js/2.1.15/require.js"></script>
+
+<!--{CONFIG:NEWPLATFORM>>}-->
+<!--# block name="env-config" --><!--# endblock -->
+<script id="platformAuth--env-config" type="application/json">
+    <!--# include file="/platformAuthConfig.json" stub="env-config" -->
+</script>
+<script id="endpoints--env-config" type="application/json">
+    <!--# include file="/endpoints.json" stub="env-config" -->
+</script>
+<script id="paths--env-config" type="application/json">
+    <!--# include file="/paths.json" stub="env-config" -->
+</script>
+<!--{CONFIG:NEWPLATFORM<<}-->
+
+<!--{CONFIG:OLDPLATFORM>>}-->
+<script type="application/json" id="cached-queries" data-query="context!current|command!*|evc_context!current|evc_studentcourse!current|evc_setting!tracking|evc_tracking_status!current|evcmember!current|blurb!704883|blurb!704884|blurb!704885|blurb!704886|blurb!690274|blurb!704882|blurb!704895|blurb!690254|blurb!690256|blurb!704887|blurb!704888|blurb!704889|blurb!704890|blurb!690261|blurb!704891|blurb!704892|blurb!704893|blurb!690265|blurb!690269|blurb!696692|blurb!696679|blurb!696680|blurb!696681|blurb!696682|blurb!696683|blurb!696684|blurb!701673|blurb!696685|blurb!696686|blurb!696687|blurb!696688|blurb!696689|blurb!696690|blurb!696691|blurb!701649|blurb!701653|blurb!701654|blurb!701655|blurb!701656|blurb!701657|blurb!701658|blurb!701670|blurb!701659|blurb!701660|blurb!701661|blurb!701662|blurb!701663|blurb!701664|blurb!701665|blurb!701674|blurb!701650|blurb!701651|blurb!701652|blurb!690267|blurb!690266|blurb!690270"></script>
+<!--{CONFIG:OLDPLATFORM<<}-->
+<!--{CONFIG:NEWPLATFORM>>}
+<script type="application/json" data-query="new platform mock data">
+  [
+    {
+      "values": {
+        "featureEnabled": false,
+        "behaviorTrackingEnabled": false,
+        "domain": ""
+      },
+      "maxAge": 14400,
+      "collapsed": false,
+      "id": "evc_setting!tracking"
+    },
+    {
+      "visitorTracking_id": -1,
+      "maxAge": 14400,
+      "collapsed": false,
+      "id": "evc_tracking_status!current"
+    }
+  ]
+</script>
+{CONFIG:NEWPLATFORM<<}-->
+
+<script>
+var evcPageConfig = {
+    pageConfig: {
+      browserTitleBlurbId: Number({CCL:etown.website.browsertitle}), /* @Type Number */
+      pageTrackUrl: '{CCL:configuration.tracking.clientside.url}' /* @Type String */
+    },
+    "app-version": {
+      "techcheck-ui": "{CCL:school.techcheck.ui.version}",
+      "livechat-ui": "{CCL:livechat-ui.version}",
+      //{CONFIG:OLDPLATFORM>>}
+      "evc-ui-widget-survey": "{CCL:evc.ui.exitsurvey.version}"
+      //{CONFIG:OLDPLATFORM<<}
+    },
+    "omniture": {
+        account: "{CCL:Evc.Omniture.Account}"
+    },
+    "externalSurvey": {
+        url: {
+          GL: '{CCL:evc.gl.survey.url}',
+          PL: '{CCL:evc.survey.url}'
+        }
+    }
+};
+
+define('evc-ui-core-classroom/config', evcPageConfig);
+
+require.config({
+  //{CONFIG:OLDPLATFORM>>}
+  "baseUrl": "getContext::configuration.servers.cache/_shared/evc-ui-app-room/{CCL:evc.ui.e15classroom.version}/bower_components",
+  //{CONFIG:OLDPLATFORM<<}
+  /*{CONFIG:NEWPLATFORM>>}
+  "baseUrl": "getContext::configuration.servers.cache/iframed-classes/{CONT_IMG_VER}/evc-ui-app-room/bower_components",
+  {CONFIG:NEWPLATFORM<<}*/
+  "paths": {
+    "jquery.gudstrap": "getContext::configuration.servers.cache/_shared/gudstrap/1.1.1/js/gudstrap",
+    "techcheck-ui": "getContext::configuration.servers.cache/_shared/techcheck-ui/"
+        + evcPageConfig['app-version']['techcheck-ui']
+        + "/js",
+    "livechat-ui": "getContext::configuration.servers.cache/_shared/livechat-ui/"
+      + evcPageConfig['app-version']['livechat-ui']
+      + "/js/standalone",
+    //{CONFIG:OLDPLATFORM>>}
+    "evc-ui-widget-survey": "getContext::configuration.servers.cache/_shared/evc-ui-widget-survey/"
+      + evcPageConfig['app-version']['evc-ui-widget-survey']
+      + "/bundle",
+    //{CONFIG:OLDPLATFORM<<}
+    /*{CONFIG:NEWPLATFORM>>}
+    "evc-ui-widget-survey": "getContext::configuration.servers.cache/iframed-classes/{CONT_IMG_VER}/evc-ui-widget-survey/bundle",
+    {CONFIG:NEWPLATFORM<<}*/
+  }
+});
+//{CONFIG:OLDPLATFORM>>}
+define('config', {
+      'cacheServer': "/getContext::configuration.servers.cache/../",
+      'api': {
+          'query': {
+              'url': '/services/api/proxy/queryproxy',
+              'type': 'post'
+          }
+      }
+});
+//{CONFIG:OLDPLATFORM<<}
+/*{CONFIG:NEWPLATFORM>>}
+define('config', ['get-env-config'] , function (getEnvConfig) {
+  return {
+    'cacheServer': "/getContext::configuration.servers.cache/../",
+    'api': {
+      'query': {
+        'url': getEnvConfig('endpoints').queryproxy || '/services/api/proxy/queryproxy',
+        'type': 'post'
+      }
+    }
+  };
+});
+{CONFIG:NEWPLATFORM<<}*/
+
+// new context for legacy troopjs 1.x applications.
+require.config({
+      "context": "troopjs-1.0",
+      "baseUrl": "getContext::configuration.servers.cache/_shared"
+});
+</script>
+<!--{CONFIG:OLDPLATFORM>>}-->
+<script type="text/javascript" src="/_scripts/visittracking.js"></script>
+<!--{CONFIG:OLDPLATFORM<<}-->
+<!--{CONFIG:NEWPLATFORM>>}
+<script type="text/javascript" TODO-src="/_scripts/visittracking.js"></script>
+<script type="text/javascript">
+window.etvt_trackVisit = function (data) {
+  console.log("mock etvt_trackVisit", data);
+};
+</script>
+{CONFIG:NEWPLATFORM<<}-->
+<!-- build:js main.js -->
+<!--{CONFIG:OLDPLATFORM>>}-->
+<script src="getContext::configuration.servers.cache/_shared/evc-ui-app-room/{CCL:evc.ui.e15classroom.version}/main.js"></script>
+<!--{CONFIG:OLDPLATFORM<<}-->
+<!--{CONFIG:NEWPLATFORM>>}
+<script src="getContext::configuration.servers.cache/iframed-classes/{CONT_IMG_VER}/evc-ui-app-room/main.js"></script>
+{CONFIG:NEWPLATFORM<<}-->
+<!-- endbuild -->
+</head>
+<body>
+<div class="evc-layout-popup" data-weave="evc-ui-widget-shared/widget/popup" evc-ui="true"></div>
+</body>
+</html>
