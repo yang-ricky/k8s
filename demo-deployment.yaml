@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: ricky:0.0.1
+        image: 101.132.172.54:5000/ricky:latest
         command: [ "/bin/sh", "-c", "/usr/init.sh"]
         ports:
         - containerPort: 5631
