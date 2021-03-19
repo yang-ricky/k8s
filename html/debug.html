@@ -1,162 +1,321 @@
-<!DOCTYPE HTML>
+
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-<meta name="renderer" content="webkit">
-<title>EF</title>
-<link rel="stylesheet" type="text/css" href="getContext::configuration.servers.cache/_shared/gudstrap/1.1.1-ef.1/css/gudstrap.css" media="all"/>
-<link rel="stylesheet" type="text/css" href="getContext::configuration.servers.cache/_shared/headerfooter/0.9.5/css/main.min.css" media="all"/>
-<!--{CONFIG:OLDPLATFORM>>}-->
-<link rel="stylesheet" type="text/css" href="getContext::configuration.servers.cache/_shared/evc-ui-app-room/{CCL:evc.ui.e15classroom.version}/css/main.css" media="all" />
-<!--{CONFIG:OLDPLATFORM<<}-->
-<!--{CONFIG:NEWPLATFORM>>}
-<link rel="stylesheet" type="text/css" href="getContext::configuration.servers.cache/iframed-classes/{CONT_IMG_VER}/evc-ui-app-room/css/main.css" media="all" />
-<!--{CONFIG:NEWPLATFORM<<}-->
-<script type="text/javascript" src="getContext::configuration.servers.cache/_shared/require.js/2.1.15/require.js"></script>
-
-<!--{CONFIG:NEWPLATFORM>>}-->
-<!--# block name="env-config" --><!--# endblock -->
-<script id="platformAuth--env-config" type="application/json">
-    <!--# include file="/platformAuthConfig.json" stub="env-config" -->
-</script>
-<script id="endpoints--env-config" type="application/json">
-    <!--# include file="/endpoints.json" stub="env-config" -->
-</script>
-<script id="paths--env-config" type="application/json">
-    <!--# include file="/paths.json" stub="env-config" -->
-</script>
-<!--{CONFIG:NEWPLATFORM<<}-->
-
-<!--{CONFIG:OLDPLATFORM>>}-->
-<script type="application/json" id="cached-queries" data-query="context!current|command!*|evc_context!current|evc_studentcourse!current|evc_setting!tracking|evc_tracking_status!current|evcmember!current|blurb!704883|blurb!704884|blurb!704885|blurb!704886|blurb!690274|blurb!704882|blurb!704895|blurb!690254|blurb!690256|blurb!704887|blurb!704888|blurb!704889|blurb!704890|blurb!690261|blurb!704891|blurb!704892|blurb!704893|blurb!690265|blurb!690269|blurb!696692|blurb!696679|blurb!696680|blurb!696681|blurb!696682|blurb!696683|blurb!696684|blurb!701673|blurb!696685|blurb!696686|blurb!696687|blurb!696688|blurb!696689|blurb!696690|blurb!696691|blurb!701649|blurb!701653|blurb!701654|blurb!701655|blurb!701656|blurb!701657|blurb!701658|blurb!701670|blurb!701659|blurb!701660|blurb!701661|blurb!701662|blurb!701663|blurb!701664|blurb!701665|blurb!701674|blurb!701650|blurb!701651|blurb!701652|blurb!690267|blurb!690266|blurb!690270"></script>
-<!--{CONFIG:OLDPLATFORM<<}-->
-<!--{CONFIG:NEWPLATFORM>>}
-<script type="application/json" data-query="new platform mock data">
-  [
-    {
-      "values": {
-        "featureEnabled": false,
-        "behaviorTrackingEnabled": false,
-        "domain": ""
-      },
-      "maxAge": 14400,
-      "collapsed": false,
-      "id": "evc_setting!tracking"
-    },
-    {
-      "visitorTracking_id": -1,
-      "maxAge": 14400,
-      "collapsed": false,
-      "id": "evc_tracking_status!current"
-    }
-  ]
-</script>
-{CONFIG:NEWPLATFORM<<}-->
-
-<script>
-var evcPageConfig = {
-    pageConfig: {
-      browserTitleBlurbId: Number({CCL:etown.website.browsertitle}), /* @Type Number */
-      pageTrackUrl: '{CCL:configuration.tracking.clientside.url}' /* @Type String */
-    },
-    "app-version": {
-      "techcheck-ui": "{CCL:school.techcheck.ui.version}",
-      "livechat-ui": "{CCL:livechat-ui.version}",
-      //{CONFIG:OLDPLATFORM>>}
-      "evc-ui-widget-survey": "{CCL:evc.ui.exitsurvey.version}"
-      //{CONFIG:OLDPLATFORM<<}
-    },
-    "omniture": {
-        account: "{CCL:Evc.Omniture.Account}"
-    },
-    "externalSurvey": {
-        url: {
-          GL: '{CCL:evc.gl.survey.url}',
-          PL: '{CCL:evc.survey.url}'
-        }
-    }
-};
-
-define('evc-ui-core-classroom/config', evcPageConfig);
-
-require.config({
-  //{CONFIG:OLDPLATFORM>>}
-  "baseUrl": "getContext::configuration.servers.cache/_shared/evc-ui-app-room/{CCL:evc.ui.e15classroom.version}/bower_components",
-  //{CONFIG:OLDPLATFORM<<}
-  /*{CONFIG:NEWPLATFORM>>}
-  "baseUrl": "getContext::configuration.servers.cache/iframed-classes/{CONT_IMG_VER}/evc-ui-app-room/bower_components",
-  {CONFIG:NEWPLATFORM<<}*/
-  "paths": {
-    "jquery.gudstrap": "getContext::configuration.servers.cache/_shared/gudstrap/1.1.1/js/gudstrap",
-    "techcheck-ui": "getContext::configuration.servers.cache/_shared/techcheck-ui/"
-        + evcPageConfig['app-version']['techcheck-ui']
-        + "/js",
-    "livechat-ui": "getContext::configuration.servers.cache/_shared/livechat-ui/"
-      + evcPageConfig['app-version']['livechat-ui']
-      + "/js/standalone",
-    //{CONFIG:OLDPLATFORM>>}
-    "evc-ui-widget-survey": "getContext::configuration.servers.cache/_shared/evc-ui-widget-survey/"
-      + evcPageConfig['app-version']['evc-ui-widget-survey']
-      + "/bundle",
-    //{CONFIG:OLDPLATFORM<<}
-    /*{CONFIG:NEWPLATFORM>>}
-    "evc-ui-widget-survey": "getContext::configuration.servers.cache/iframed-classes/{CONT_IMG_VER}/evc-ui-widget-survey/bundle",
-    {CONFIG:NEWPLATFORM<<}*/
-  }
-});
-//{CONFIG:OLDPLATFORM>>}
-define('config', {
-      'cacheServer': "/getContext::configuration.servers.cache/../",
-      'api': {
-          'query': {
-              'url': '/services/api/proxy/queryproxy',
-              'type': 'post'
-          }
-      }
-});
-//{CONFIG:OLDPLATFORM<<}
-/*{CONFIG:NEWPLATFORM>>}
-define('config', ['get-env-config'] , function (getEnvConfig) {
-  return {
-    'cacheServer': "/getContext::configuration.servers.cache/../",
-    'api': {
-      'query': {
-        'url': getEnvConfig('endpoints').queryproxy || '/services/api/proxy/queryproxy',
-        'type': 'post'
-      }
-    }
-  };
-});
-{CONFIG:NEWPLATFORM<<}*/
-
-// new context for legacy troopjs 1.x applications.
-require.config({
-      "context": "troopjs-1.0",
-      "baseUrl": "getContext::configuration.servers.cache/_shared"
-});
-</script>
-<!--{CONFIG:OLDPLATFORM>>}-->
-<script type="text/javascript" src="/_scripts/visittracking.js"></script>
-<!--{CONFIG:OLDPLATFORM<<}-->
-<!--{CONFIG:NEWPLATFORM>>}
-<script type="text/javascript" TODO-src="/_scripts/visittracking.js"></script>
-<script type="text/javascript">
-window.etvt_trackVisit = function (data) {
-  console.log("mock etvt_trackVisit", data);
-};
-</script>
-{CONFIG:NEWPLATFORM<<}-->
-<!-- build:js main.js -->
-<!--{CONFIG:OLDPLATFORM>>}-->
-<script src="getContext::configuration.servers.cache/_shared/evc-ui-app-room/{CCL:evc.ui.e15classroom.version}/main.js"></script>
-<!--{CONFIG:OLDPLATFORM<<}-->
-<!--{CONFIG:NEWPLATFORM>>}
-<script src="getContext::configuration.servers.cache/iframed-classes/{CONT_IMG_VER}/evc-ui-app-room/main.js"></script>
-{CONFIG:NEWPLATFORM<<}-->
-<!-- endbuild -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, requiresActiveX=true, chrome=1">
+<meta name="format-detection" content="telephone=no,email=no">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0">
+<meta name="description" content="Join our online lessons, group classes and one-to-one Private Teacher lessons available 24/7
+" />
+<title>EF English Live Corporate</title>
+<link rel="stylesheet" href="https://qa-corporate.ef.com/partner/corp/_styles/pure.css">
+<link type="text/css" rel="stylesheet" href="https://qa-et.ef-cdn.com/partner/ETFileMergeHandler.ashx?f=AFMAdAB5AGwAZQBzAGgAZQBlAHQAfAA0ADMAMgAwADAAfAAvAHAAYQByAHQAbgBlAHIALwBjAG8AcgBwAC8AXwBzAHQAeQBsAGUAcwAvAGIAdQBpAGwAZAAvAGEAcABwAC0AYgB1AGkAbAB0AC4AbQBpAG4ALgBjAHMAcwA&amp;p=Corp&amp;ctr=us&amp;v=qa&amp;s" />
+<style type="text/css">
+              @font-face {
+                font-family: 'home-icon';
+                font-style: normal;
+                font-weight: normal;
+                src: url('https://qa-corporate.ef.com/partner/corp/_styles/home/fonts/homepage.eot');
+                src: url('https://qa-corporate.ef.com/partner/corp/_styles/home/fonts/homepage.eot?#iefix') format('embedded-opentype'),
+                     url('https://qa-corporate.ef.com/partner/corp/_styles/home/fonts/homepage.woff') format('woff'),
+                     url('https://qa-corporate.ef.com/partner/corp/_styles/home/fonts/homepage.ttf') format('truetype'),
+                     url('https://qa-corporate.ef.com/partner/corp/_styles/home/fonts/homepage.svg') format('svg');
+              }
+        </style>
+<script type="text/javascript" src="https://qa-corporate.ef.com/partner/corp/_scripts/flexible.js"></script>
+<link rel="stylesheet" type="text/css" href="https://qa-et.ef-cdn.com/_shared/campus-mypage-ui-shared/2020.32.1/css/main.min.css" media="screen" />
+<script type="text/javascript" src="https://qa-corporate.ef.com/_scripts/math.uuid.js"></script>
+<script type="text/javascript" src="https://qa-corporate.ef.com/partner/corp/_scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="https://qa-corporate.ef.com/partner/corp/_scripts/jquery.placeholder.min.js"></script>
+<script type="text/javascript" src="https://qa-corporate.ef.com/partner/corp/_scripts/jquery.validate.min.js"></script>
+<script type="text/javascript" src="https://qa-corporate.ef.com/partner/corp/_scripts/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="https://qa-corporate.ef.com/partner/corp/_scripts/require.min.js"></script>
 </head>
-<body>
-<div class="evc-layout-popup" data-weave="evc-ui-widget-shared/widget/popup" evc-ui="true"></div>
+<body style="font-size:12px;">
+<div class="main">
+<div class="header">
+<div class="hd-container pure-g">
+<div class="pure-u-1-2">
+<img class="pure-img logo" src="https://qa-et.ef-cdn.com/_imgs/partner/CLT/redesign/logo_v4.png">
+</div>
+<div class="pure-u-1-2 right">
+<img class="pure-img partner-img" src="https://qa-et.ef-cdn.com/_imgs/partnerlogo/spacer.gif" />
+</div>
+</div>
+</div>
+<div class="content ">
+<div class="bg-imgs">
+<div class="width-height">
+<div class="full-screen-hack"></div>
+<div class="ratio">
+<div class="img pure-img business" style="background-image:url('https://qa-et.ef-cdn.com/_imgs/partner/CLT/redesign/CSLogin17_01.jpg')"></div>
+<div class="img pure-img demo" style="background-image:url('https://qa-et.ef-cdn.com/_imgs/partner/CLT/redesign/CSLogin17_01.jpg')"></div>
+<div class="img pure-img about" style="background-image:url('https://qa-et.ef-cdn.com/_imgs/partner/CLT/redesign/CSLogin17_01.jpg')"></div>
+<div class="img pure-img default" style="background-image:url('https://qa-et.ef-cdn.com/_imgs/partner/CLT/redesign/CSLogin17_01.jpg')"></div>
+</div>
+</div>
+<div class="welcome left">
+<h2>
+The world's most advanced <strong>Cloud-based English School</strong>
+</h2>
+</div>
+</div>
+<div class="info width-height">
+<div class="ratio">
+<div class="welcome">
+<h2>
+The world's most advanced <strong>Cloud-based English School</strong>
+</h2>
+</div>
+<div class="log-in margin-auto">
+<div class="pure-g">
+<div class="pure-u-1-1 margin-auto">
+<form method="post" action="https://qa-corporate.ef.com/login/secure.ashx" class="login-form">
+<input type="hidden" id="onsuccess" name="onsuccess" />
+<input type="hidden" id="referer" name="referer" />
+<input type="hidden" id="username" name="username" />
+<input type="hidden" id="password" name="password" />
+<input type="hidden" id="p" name="p" value="Corp" />
+<div class="log-in-title">
+<h3>Sign in to</h3>
+<img src="https://qa-corporate.ef.com/_imgs/partnerlogo/lls.login.box.logo.png" />
+</div>
+<div class="text left user-name">
+<label for="user_name" class="label-username invisibility">Username or Email</label>
+<input type="text" placeholder="Username or Email" id="user_name" name="user_name" autocomplete="off" />
+</div>
+<div class="text left pass-word">
+<label for="pass-word" class="label-pwd invisibility">Password</label>
+<input type="password" placeholder="Password" id="pwd" name="pass_word" autocomplete="off" />
+</div>
+<div class="text left captcha-field">
+<label for="CaptchaCode" class="label-captcha invisibility">Verification Code</label>
+<input type="hidden" id="CaptchaId" name="CaptchaId" disabled />
+<input type="text" placeholder="Verification Code" id="CaptchaCode" name="CaptchaCode" autocomplete="off" autocorrect="false" data-msg-required="This field is required." data-msg-minlength="Please enter at least {0} characters." disabled required style="width:70%;" />
+<span class="captcha-img"></span>
+</div>
+<div class="error-msg"></div>
+<div class="btn-login" id="btnlogin">
+<button type="button" class="btn-submit">
+<span class="btn-text">Log in</span>
+</button>
+</div>
+<div class="forget-pwd">
+<a href="https://qa-corporate.ef.com/partner/corp/password.aspx" class="click_tracking" data-tkey="action.forgotpassword">Forgotten your password?</a>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="gallery">
+<div class="parent">
+<div class="list-item child" data-type="business">
+<div class="top"></div>
+<div class="relative">
+<div class="business item" data-type="business">
+<strong>
+English Proficiency Test
+</strong>
+<p>
+Find out your level of English with our online test.
+</p>
+ <a href="https://qa-corporate.ef.com/campus/enrollment/b2b" class="click_tracking" data-tkey="action.proficiencyTestClick">
+<span>Take the test now</span><i class="ets-icon-home-right-arrow"></i>
+</a>
+</div>
+</div>
+<div class="bottom"></div>
+</div>
+<div class="list-item child" data-type="demo">
+<div class="top"></div>
+<div class="relative">
+<div class="demo item" data-type="demo">
+<strong>
+School demo
+</strong>
+<p>
+A quick guide to EF's cloud-based language school.
+</p>
+<a href="javascript:void(0)" id="showdemo" class="opener click_tracking" data-weave="campus-mypage-ui-shared/widget/video-popup/main('video', 'title', 'name')" data-video="649558" data-title="'How it works' video" data-name="orientationVideo" data-tkey="action.schoolDemoClick">
+<span>See how it works</span><i class="ets-icon-home-right-arrow"></i>
+</a>
+</div>
+</div>
+<div class="bottom"></div>
+</div>
+<div class="list-item child" data-type="about">
+<div class="top"></div>
+<div class="relative">
+<div class="about item" data-type="about">
+<strong>
+About us
+</strong>
+<p>
+Go to the EF Corporate Solutions website to find out more.
+</p>
+<a href="http://www.ef.com/corporate" class="click_tracking" data-tkey="action.CSAboutUs">
+<span>Learn more now</span><i class="ets-icon-home-right-arrow"></i>
+</a>
+</div>
+</div>
+<div class="bottom"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer ">
+<div class="pure-g">
+<div class="pure-u-1-1 pure-u-md-2-3">
+<div class="ft-left">
+<ul class="addnav">
+<li class="first" style="">
+<a href="/customerservice/contactus/inschool" target="_blank">
+Contact us
+</a>
+</li><li style="background:url(https://qa-et.ef-cdn.com/_imgs/partner/CLT/redesign/separator2.png) no-repeat 0 2px;">
+<a target="_blank" href="http://www.ef.com">
+All EF Programs
+</a>
+</li><li style="background:url(https://qa-et.ef-cdn.com/_imgs/partner/CLT/redesign/separator2.png) no-repeat 0 2px;">
+<a href="javascript:void(0);" onclick="window.open('/partner/corp/terms/privacy.aspx', 'help', 'resizable=no, scrollbars=yes, width=600, height=600');">
+Privacy Policy
+</a>
+</li>
+</ul>
+<div class="footer-block">
+Copyright © EF Education First. All rights reserved. EF English Live is a registered trademark.
+</div>
+</div>
+</div>
+<div class="pure-u-1-1 pure-u-md-1-3">
+<div class="ft-right">
+<div class="language-switch">
+<div class="language-select" style="display:none;">
+<ul>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="en" class="ue-underline"><span class="full">English</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="pt" class="ue-underline"><span class="full">Português</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="sp" class="ue-underline"><span class="full">Español (Latino)</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="es" class="ue-underline"><span class="full">Español (Es.)</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="fr" class="ue-underline"><span class="full">Français</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="ge" class="ue-underline"><span class="full">Deutsch</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="it" class="ue-underline"><span class="full">Italiano</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="ko" class="ue-underline"><span class="full">한국어</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="ja" class="ue-underline"><span class="full">日本語</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="hk" class="ue-underline"><span class="full">繁體中文 (中國香港)</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="ch" class="ue-underline"><span class="full">繁體中文 (中國台灣)</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="cs" class="ue-underline"><span class="full">简体中文</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="th" class="ue-underline"><span class="full">ภาษาไทย</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="ru" class="ue-underline"><span class="full">Русский</span></a>
+</li>
+ <li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="tr" class="ue-underline"><span class="full">Türkçe</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="in" class="ue-underline"><span class="full">Bahasa Indonesia</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="ar" class="ue-underline"><span class="full">العربية</span></a>
+</li>
+<li>
+<i class="ets-icon-home-check-mark"></i>
+<a href="#" code="rw" class="ue-underline"><span class="full">Kinyarwanda</span></a>
+</li>
+</ul>
+</div>
+<div class="language-button">
+<i class="ets-icon-home-earth"></i>
+<span class="full">English</span>
+<span class="abbr">en</span>
+<i class="ets-icon-home-up-arrow"></i>
+<i class="ets-icon-home-down-arrow"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+            define('campus-mypage-ui-shared/config', {
+                cacheServer: 'https://qa-et.ef-cdn.com',
+                swfPath: '/_shared/mediaelement/2.8.2-ef.7/',
+                'omniture': {
+                  'account': 'efenglenglishtownstudyplandev'
+                }
+            });
+            require.config({
+                baseUrl: 'https://qa-et.ef-cdn.com'
+            });
+        </script>
+<script>
+            var hideNavigationMenu = false;
+            var OnSuccess = '/campus/enrollment/b2b';
+            var userError = "Please enter your email";
+            var passWordError = "Please enter your password";
+            var currentCode = 'en';
+        </script>
+<script src="https://qa-et.ef-cdn.com/_shared/campus-mypage-ui-shared/2020.32.1/js/app-built.min.js"></script>
+<script type='text/javascript' src='https://qa-et.ef-cdn.com/ETFileMergeHandler.ashx?f=AFMAYwByAGkAcAB0AHwANAAzADIAMAAwAHwALwBwAGEAcgB0AG4AZQByAC8AYwBvAHIAcAAvAF8AcwBjAHIAaQBwAHQAcwAvAGMAbwBtAG0AbwBuAC4AagBzACwALwBwAGEAcgB0AG4AZQByAC8AYwBvAHIAcAAvAF8AcwBjAHIAaQBwAHQAcwAvAGwAbwBnAGkAbgAuAGoAcwAsAC8AcABhAHIAdABuAGUAcgAvAGMAbwByAHAALwBfAHMAYwByAGkAcAB0AHMALwBjAGEAcAB0AGMAaABhAC0AbABvAGcAaQBuAC4AagBzA&amp;p=Corp&amp;ctr=us&amp;v=qa&amp;s'></script>
+
+
+<script type="text/javascript" src="https://qa-et.ef-cdn.com/_scripts/visittracking.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+etvt_trackVisit('https://qa-etvt.englishlive.com/track/trackhandler.ashx', 'us', 'Corp');
+//]]>
+</script>
+<noscript><div><img src="https://qa-etvt.englishlive.com/track/trackhandler.ashx?ctr=us&amp;ptr=Corp" height="1" width="1" alt="" /></div></noscript>
+
+<!--[if IE 9]>
+             
+        <![endif]-->
 </body>
 </html>
