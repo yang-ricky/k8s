@@ -12,5 +12,7 @@ spec:
     volumeMounts:
     - name: shared-data
       mountPath: /usr/share/nginx/html
+  nodeSelector:
+    "kubernetes.io/hostname": yang
   hostNetwork: true
   dnsPolicy: Default
