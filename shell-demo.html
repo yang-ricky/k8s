@@ -8,11 +8,9 @@ spec:
     emptyDir: {}
   containers:
   - name: nginx
-    image: nginx
+    image: nginx:1.15-alpine
     volumeMounts:
     - name: shared-data
       mountPath: /usr/share/nginx/html
-  nodeSelector:
-    "kubernetes.io/hostname": yang
   hostNetwork: true
   dnsPolicy: Default
