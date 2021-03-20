@@ -33,5 +33,6 @@ spec:
     targetPort: 5631 # Docker实例的端口
     nodePort: 31112  # 暴露给外网的端口
     protocol: TCP
+  type: NodePort
   selector:
     run: demo-deployment
