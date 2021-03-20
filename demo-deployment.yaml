@@ -18,8 +18,6 @@ spec:
         command: [ "/bin/sh", "-c", "/usr/init.sh"]
         ports:
         - containerPort: 80 #容器开放的端口，即使是80也要显示指定
-      nodeSelector:
-        "kubernetes.io/hostname": yang
 
 ---
 
