@@ -17,7 +17,7 @@ spec:
         image: 101.132.172.54:5000/ricky:latest
         command: [ "/bin/sh", "-c", "/usr/init.sh"]
         ports:
-        - containerPort: 80 #容器的端口
+        - containerPort: 80 #容器开放的端口，即使是80也要显示指定
 
 ---
 
@@ -32,3 +32,5 @@ spec:
     nodePort: 31112  # 暴露给外网的端口
     protocol: TCP
   type: NodePort
+  selector:
+    app: demo
