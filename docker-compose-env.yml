@@ -54,7 +54,7 @@ services:
       - 9200:9200
       - 9300:9300
   logstash:
-    image: logstash:7.6.2
+    image: registry.cn-shanghai.aliyuncs.com/hellodock/logstash:latest
     container_name: logstash
     environment:
       - TZ=Asia/Shanghai
@@ -70,7 +70,7 @@ services:
       - 4562:4562
       - 4563:4563
   kibana:
-    image: kibana:7.6.2
+    image: registry.cn-shanghai.aliyuncs.com/hellodock/kibana:latest
     container_name: kibana
     links:
       - elasticsearch:es #可以用es这个域名访问elasticsearch服务
