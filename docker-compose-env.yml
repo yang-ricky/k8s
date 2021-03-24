@@ -48,8 +48,8 @@ services:
       - "discovery.type=single-node" #以单一节点模式启动
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小
     #volumes:
-    #  - /mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins #插件文件挂载
-    #  - /mydata/elasticsearch/data:/usr/share/elasticsearch/data #数据文件挂载
+    #  - /mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins #插件文件挂载, 这里会导致kibana起不来
+    #  - /mydata/elasticsearch/data:/usr/share/elasticsearch/data #数据文件挂载, 这里会导致kibana起不来
     ports:
       - 9200:9200
       - 9300:9300
@@ -59,7 +59,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     #volumes:
-    #  - /mydata/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf #挂载logstash的配置文件
+    #  - /mydata/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf #挂载logstash的配置文件, 这里会导致kibana起不来
     depends_on:
       - elasticsearch #kibana在elasticsearch启动之后再启动
     links:
