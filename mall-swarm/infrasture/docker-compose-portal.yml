@@ -1,7 +1,7 @@
 version: '3'
 services:
   mall-portal:
-    image: mall/mall-portal:1.0-SNAPSHOT
+    image: macrodocker/mall-portal:1.0-SNAPSHOT
     container_name: mall-portal
     ports:
       - 8085:8085
