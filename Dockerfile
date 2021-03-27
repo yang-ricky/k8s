@@ -7,6 +7,7 @@ COPY ./learn-ricky-pro-0316225156_chain.crt /etc/nginx/learn-ricky-pro-031622515
 COPY ./learn-ricky-pro-0316225156_key.key /etc/nginx/learn-ricky-pro-0316225156_key.key
 
 COPY ./default.conf /etc/nginx/conf.d/default.conf
+COPY ./ssl.conf /etc/nginx/conf.d/server/ssl.conf
 COPY ./nginx.conf /etc/nginx/conf.d/server/nginx.conf
 COPY ./init.sh /usr/init.sh
 
