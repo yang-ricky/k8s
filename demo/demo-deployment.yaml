@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: 101.132.172.54:5000/ricky:latest
+        image: 101.132.172.54:5000/ricky:0.0.1
         command: [ "/bin/sh", "-c", "/usr/init.sh"]
         ports:
         - containerPort: 80 #容器开放的端口，即使是80也要显示指定
