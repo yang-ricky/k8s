@@ -19,7 +19,7 @@ spec:
         ports:
         - containerPort: 80 #容器开放的端口，即使是80也要显示指定
         - containerPort: 443 # 也开放了https端口
-      nodeName: yang
+      nodeName: yang # 将pod运行在指定的机器上
 
 ---
 
@@ -39,6 +39,6 @@ spec:
     nodePort: 31113  # 暴露给外网的端口
     protocol: TCP
     name: https
-  type: NodePort
+  type: NodePort # k8s会向外网暴露端口，如果是在阿里云上，阿里云需要将相应的端口设置成白名单
   selector:
     app: demo
