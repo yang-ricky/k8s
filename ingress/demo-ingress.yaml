@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-mydemo
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: demo01.odocker.com
+    http:
+      paths:
+      - path:
+        backend:
+          serviceName: mydemo01svc
+          servicePort: 80
+  - host: demo02.linuxsb.com
+    http:
+      paths:
+      - path:
+        backend:
+          serviceName: mydemo02svc
+          servicePort: 8080
