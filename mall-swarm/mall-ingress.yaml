@@ -10,4 +10,4 @@ spec:
       - path: /demo
         backend:
           serviceName: demo-svc
-          servicePort: 80
+          servicePort: 5631
