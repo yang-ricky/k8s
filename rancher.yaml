@@ -63,12 +63,12 @@ roleRef:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: cattle-credentials-628f6a5
+  name: cattle-credentials-729308d
   namespace: cattle-system
 type: Opaque
 data:
   url: "aHR0cHM6Ly9sZWFybi5yaWNreS5wcm86MTQ0Mw=="
-  token: "ZDg3NmdmZjkyYmpmbXhwcm56Njhxdzl6djViNDI2cHR3cmpjNWM3cGg1ODc5ZmdqYmZmemZq"
+  token: "dnJueHZ3Z2pnc2I5anN0bXZ4bG1sampoZjVrdmZ0d25wcGs0Y3RoZGZ0a2N6dm1iN21wa3hq"
   namespace: ""
 
 ---
@@ -168,7 +168,7 @@ spec:
           - name: CATTLE_SERVER
             value: "https://learn.ricky.pro:1443"
           - name: CATTLE_CA_CHECKSUM
-            value: "a2e967b7dc5e7a1441bb6c68cb57b2746c24f9aba3becd1bf0bc04171e8d679e"
+            value: "73586f8a752644e8f9d829b4b7213608963c18979918fbfa893040f1b5eb5e6c"
           - name: CATTLE_CLUSTER
             value: "true"
           - name: CATTLE_K8S_MANAGED
@@ -188,5 +188,5 @@ spec:
       volumes:
       - name: cattle-credentials
         secret:
-          secretName: cattle-credentials-628f6a5
+          secretName: cattle-credentials-729308d
           defaultMode: 320
