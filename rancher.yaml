@@ -1,3 +1,4 @@
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -62,12 +63,12 @@ roleRef:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: cattle-credentials-b40d339
+  name: cattle-credentials-ebfbcdf
   namespace: cattle-system
 type: Opaque
 data:
   url: "aHR0cHM6Ly9sZWFybi5yaWNreS5wcm86MTQ0Mw=="
-  token: "dmpoYnh4Ynpoa2dxcm1kYnpmbDU1Z3ZyYnNya2puYjluYjlqbjljNDc4dm01Znh4Ymtqd2Q5"
+  token: "bWxtdzI3N2o3djdmNjc2cDJ6amhibjY1eGd3eGdydjlmemtqcHRnZDU1NGhnd3I5NDU2Z2w5"
   namespace: ""
 
 ---
@@ -187,5 +188,5 @@ spec:
       volumes:
       - name: cattle-credentials
         secret:
-          secretName: cattle-credentials-b40d339
+          secretName: cattle-credentials-ebfbcdf
           defaultMode: 320
