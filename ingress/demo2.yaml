@@ -33,7 +33,7 @@ spec:
         - name: httpd
           containerPort: 8080
         volumeMounts:
-        - mountPath: "/usr/local/tomcat/webapps/ROOT/index.html"
+        - mountPath: "/root/code/k8s/index.html"
           name: sample-volume
           readOnly: true
       volumes:
