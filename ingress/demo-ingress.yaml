@@ -13,11 +13,11 @@ spec:
       - path:
         backend:
           serviceName: mydemo01svc
-          servicePort: 80
+          servicePort: 81
   - host: demo02.linuxsb.com
     http:
       paths:
       - path:
         backend:
           serviceName: mydemo02svc
-          servicePort: 8080
+          servicePort: 8081
