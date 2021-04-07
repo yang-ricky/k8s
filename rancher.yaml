@@ -99,10 +99,10 @@ metadata:
   name: cattle-cluster-agent
   namespace: cattle-system
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: cattle-cluster-agent
-  replicas: 1
   template:
     metadata:
       labels:
