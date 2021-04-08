@@ -7,17 +7,17 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: ingress1.ricky.pro
+  - host: sh2.ricky.pro
     http:
       paths:
-      - path:
+      - path: /ingress
         backend:
           serviceName: mydemo01svc
           servicePort: 80
-  - host: ingress2.ricky.pro
+  - host: sh2.ricky.pro
     http:
       paths:
-      - path:
+      - path: /ingress1
         backend:
           serviceName: mydemo02svc
           servicePort: 8080
