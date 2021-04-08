@@ -16,7 +16,7 @@ kind: Deployment
 metadata:
   name: mydemo01pod
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: mydemo01
@@ -25,6 +25,7 @@ spec:
       labels:
         app: mydemo01
     spec:
+      nodeName: yang
       containers:
       - name: myapp
         image: ikubernetes/myapp:v2

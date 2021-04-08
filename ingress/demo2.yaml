@@ -17,7 +17,7 @@ kind: Deployment
 metadata:
   name: mydemo02pod
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: mydemo02
@@ -26,6 +26,7 @@ spec:
       labels:
         app: mydemo02
     spec:
+      nodeName: yang
       containers:
       - name: mytomcat
         image: tomcat:9
