@@ -333,6 +333,7 @@ spec:
         isIngress: "true"
       # 使用hostNetwork暴露服务
       hostNetwork: true
+      nodeName: yang
       containers:
         - name: controller
           image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.32.0
@@ -523,6 +524,7 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/component: admission-webhook
     spec:
+      nodeName: yang
       containers:
         - name: create
           image: jettech/kube-webhook-certgen:v1.2.0
@@ -566,6 +568,7 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/component: admission-webhook
     spec:
+      nodeName: yang
       containers:
         - name: patch
           image: jettech/kube-webhook-certgen:v1.2.0
