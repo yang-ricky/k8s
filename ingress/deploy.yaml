@@ -328,12 +328,6 @@ spec:
         app.kubernetes.io/component: controller
     spec:
       dnsPolicy: ClusterFirst
-      # 选择对应标签的node
-      nodeSelector:
-        isIngress: "true"
-      # 使用hostNetwork暴露服务
-      hostNetwork: true
-      nodeName: yang
       containers:
         - name: controller
           image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.32.0
@@ -357,7 +351,7 @@ spec:
                 - ALL
               add:
                 - NET_BIND_SERVICE
-            runAsUser: 33
+            runAsUser: 101
             allowPrivilegeEscalation: true
           env:
             - name: POD_NAME
@@ -524,7 +518,6 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/component: admission-webhook
     spec:
-      nodeName: yang
       containers:
         - name: create
           image: jettech/kube-webhook-certgen:v1.2.0
@@ -568,7 +561,6 @@ spec:
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/component: admission-webhook
     spec:
-      nodeName: yang
       containers:
         - name: patch
           image: jettech/kube-webhook-certgen:v1.2.0
