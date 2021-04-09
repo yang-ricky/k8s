@@ -10,14 +10,14 @@ spec:
   - host: sh2.ricky.pro
     http:
       paths:
-      - path: /ingress
+      - path: /ab
         backend:
           serviceName: mydemo01svc
           servicePort: 80
   - host: sh2.ricky.pro
     http:
       paths:
-      - path: /ingress1
+      - path: /cd
         backend:
           serviceName: mydemo02svc
           servicePort: 8080
