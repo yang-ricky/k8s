@@ -24,7 +24,7 @@ spec:
         - mountPath: "/usr/share/nginx/html/host.html" # Container内部的文件路径
           name: sample-volume # 宿主机上卷的名字
           readOnly: true
-      nodeName: yang # 将pod运行在指定的机器上
+      #nodeName: yang # 将pod运行在指定的机器上
       volumes:
       - name: sample-volume #在宿主机上定义的配置文件
         hostPath:
