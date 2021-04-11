@@ -20,7 +20,16 @@ spec:
         ports:
         - containerPort: 80 #容器开放的端口，即使是80也要显示指定
         - containerPort: 443 # 也开放了https端口
+        volumeMounts: # 加载在宿主机上定义的卷
+        - mountPath: "/usr/share/nginx/html/host.html" # Container内部的文件路径
+          name: sample-volume # 宿主机上卷的名字
+          readOnly: true
       nodeName: yang # 将pod运行在指定的机器上
+      volumes:
+      - name: sample-volume #在宿主机上定义的配置文件
+        hostPath:
+          type: File
+          path: /etc/host.html
 
 ---
 

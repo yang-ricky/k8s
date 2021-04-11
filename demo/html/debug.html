@@ -45,6 +45,7 @@
 </div>
 </div>
 </div>
+<!--#include file="host.html"-->
 <div class="content ">
 <div class="bg-imgs">
 <div class="width-height">
@@ -314,7 +315,9 @@ etvt_trackVisit('https://qa-etvt.englishlive.com/track/trackhandler.ashx', 'us',
 </script>
 <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script type="text/javascript">
-document.writeln(returnCitySN["cip"]+','+returnCitySN["cname"])
+$.getJSON('http://pv.sohu.com/cityjson?ie=utf-8', function(data){
+    console.log(data);
+});
 </script>
 <noscript><div><img src="https://qa-etvt.englishlive.com/track/trackhandler.ashx?ctr=us&amp;ptr=Corp" height="1" width="1" alt="" /></div></noscript>
 
