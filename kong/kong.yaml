@@ -625,6 +625,8 @@ spec:
       labels:
         app: ingress-kong
     spec:
+      nodeSelector:
+        group: bj
       containers:
       - env:
         - name: KONG_PROXY_LISTEN
