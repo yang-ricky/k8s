@@ -580,11 +580,11 @@ spec:
   - name: proxy
     port: 80
     protocol: TCP
-    targetPort: 8000
+    targetPort: 31115
   - name: proxy-ssl
     port: 443
     protocol: TCP
-    targetPort: 8443
+    targetPort: 31116
   selector:
     app: ingress-kong
   type: NodePort
