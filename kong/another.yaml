@@ -535,7 +535,6 @@ spec:
       nodeSelector:
         node: kong
         #gateway: web
-      nodeName: yang-bj-2
       containers:
       - env:
         - name: KONG_DATABASE
@@ -723,7 +722,6 @@ spec:
     spec:
       #inodeSelector:
        # node: worker
-      nodeName: yang-bj-2
       containers:
       - name: kong-konga
         image: pantsel/konga:0.14.7
