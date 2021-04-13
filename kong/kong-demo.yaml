@@ -1,0 +1,69 @@
+#kong-netcore-demo.yaml  测试程序部署
+#create namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mydemos
+spec:
+  finalizers:
+  - kubernetes
+---
+#deploy
+apiVersion: apps/v1
+kind: Deployment
+#kind: StatefulSet
+metadata:
+  name: netcore-02-blue
+  namespace: mydemos
+spec:
+  selector:
+    matchLabels:
+      app: netcore-02-blue
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: netcore-02-blue
+    spec:    
+      containers:
+      - name: netcore-02-blue
+        image: 192.168.0.230:8083/my/netcore-02:2.0.7
+        imagePullPolicy: Always
+        env:     
+        - name: TZ
+          value: Asia/Shanghai      
+        ports:
+        - containerPort: 8020
+---
+#service
+apiVersion: v1
+kind: Service
+metadata:
+  name: netcore-02-blue
+  namespace: mydemos
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8020
+  selector:
+    app: netcore-02-blue
+  type: NodePort
+  sessionAffinity: ClientIP
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: netcore-02-blue
+  namespace: mydemos
+spec:
+  rules:
+  #host 网关域名或IP，这个是路由关键
+  - host: api.xxx.cn
+    http:
+      paths:
+      #这个也很重要，path路径，如service1，这个不需要和服务名完全一致
+      - path: /netcore-02/ 
+        backend:
+          serviceName: netcore-02-blue
+          servicePort: 80
