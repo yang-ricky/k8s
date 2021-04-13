@@ -620,7 +620,7 @@ spec:
             fieldRef:
               apiVersion: v1
               fieldPath: metadata.namespace
-        image: 192.168.0.230:8083/kong/kong-ingress-controller:0.6.2    #注意修改  
+        image: kong/kubernetes-ingress-controller:0.6.2    #注意修改
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
