@@ -795,7 +795,7 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
           name: datadir
-          subPath: pgdata
+          subPath: data #subpath具体的含义
       terminationGracePeriodSeconds: 60
   volumeClaimTemplates:
   - metadata:
