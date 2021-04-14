@@ -6,7 +6,7 @@ metadata:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: manual
+  name: fast
 provisioner: kubernetes.io/gce-pd
 parameters:
   type: pd-ssd
@@ -18,7 +18,7 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: manual
+  storageClassName: fast
   accessModes: #访问模式
   - ReadWriteOnce
   capacity:
@@ -71,7 +71,7 @@ spec:
     - metadata:
         name: postgres-data
       spec:
-        storageClassName: manual
+        storageClassName: fast
         accessModes: ["ReadWriteOnce"]
         resources:
           requests:
