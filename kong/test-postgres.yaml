@@ -12,6 +12,18 @@ parameters:
   type: pd-ssd
 ---
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: aliyun-volume
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 100Mi
+  hostPath:
+    path: "/root"
+---
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgres-config
@@ -57,10 +69,9 @@ spec:
         name: postgres-data
       spec:
         accessModes: ["ReadWriteOnce"]
-        storageClassName: fast
         resources:
           requests:
-            storage: 4Gi
+            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
