@@ -19,7 +19,7 @@ metadata:
     type: local
 spec:
   capacity:
-    storage: 100Mi
+    storage: 2Gi
   hostPath:
     path: "/root"
 ---
