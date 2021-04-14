@@ -803,9 +803,10 @@ spec:
     spec:
       accessModes:
       - ReadWriteOnce
+      storageClassName: gp2
       resources:
         requests:
-          storage: 1Gi
+          storage: 2Gi
 ---
 apiVersion: batch/v1
 kind: Job
