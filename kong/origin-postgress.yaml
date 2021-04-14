@@ -639,8 +639,7 @@ spec:
       labels:
         app: ingress-kong
     spec:
-      nodeSelector:
-        group: bj
+      nodeName: yang-bj-1
       containers:
       - env:
         - name: KONG_DATABASE
@@ -778,8 +777,7 @@ spec:
       labels:
         app: postgres
     spec:
-      nodeSelector:
-        group: bj
+      nodeName: yang-bj-1
       containers:
       - env:
         - name: POSTGRES_USER
@@ -819,8 +817,7 @@ spec:
     metadata:
       name: kong-migrations
     spec:
-      nodeSelector:
-        group: bj
+      nodeName: yang-bj-1
       containers:
       - command:
         - /bin/sh
