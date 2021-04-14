@@ -18,6 +18,7 @@ metadata:
   labels:
     type: local
 spec:
+  storageClassName: manual
   accessModes: #访问模式
   - ReadWriteOnce
   capacity:
@@ -70,6 +71,7 @@ spec:
     - metadata:
         name: postgres-data
       spec:
+        storageClassName: manual
         accessModes: ["ReadWriteOnce"]
         resources:
           requests:
