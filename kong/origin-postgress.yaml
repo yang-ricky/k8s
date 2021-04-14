@@ -645,9 +645,9 @@ spec:
         - name: KONG_DATABASE
           value: postgres
         - name: KONG_PG_HOST
-          value: postgres
+          value: 106.14.148.37
         - name: KONG_PG_PASSWORD
-          value: kong
+          value: 11111111
         - name: KONG_PROXY_LISTEN
           value: 0.0.0.0:8000, 0.0.0.0:8443 ssl http2
         - name: KONG_PORT_MAPS
@@ -754,9 +754,9 @@ spec:
         - while true; do kong migrations list; if [[ 0 -eq $? ]]; then exit 0; fi; sleep 2;  done;
         env:
         - name: KONG_PG_HOST
-          value: postgres
+          value: 106.14.148.37
         - name: KONG_PG_PASSWORD
-          value: kong
+          value: 11111111
         image: kong:2.3
         name: wait-for-migrations
       serviceAccountName: kong-serviceaccount
@@ -825,9 +825,9 @@ spec:
         - kong migrations bootstrap
         env:
         - name: KONG_PG_PASSWORD
-          value: kong
+          value: 11111111
         - name: KONG_PG_HOST
-          value: postgres
+          value: 106.14.148.37
         - name: KONG_PG_PORT
           value: "5432"
         image: kong:2.3
@@ -839,7 +839,7 @@ spec:
         - until nc -zv $KONG_PG_HOST $KONG_PG_PORT -w1; do echo 'waiting for db'; sleep 1; done
         env:
         - name: KONG_PG_HOST
-          value: postgres
+          value: 106.14.148.37
         - name: KONG_PG_PORT
           value: "5432"
         image: busybox
