@@ -473,7 +473,7 @@ metadata:
   namespace: kong
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRole # 一系列权限的集合，比如读取pod
+kind: ClusterRole
 metadata:
   name: kong-ingress-clusterrole
 rules:
@@ -555,7 +555,7 @@ rules:
   - update
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRoleBinding # 将Role分配给特定的用户和用户组，例子：将管理员权限分配给Ricky
+kind: ClusterRoleBinding
 metadata:
   name: kong-ingress-clusterrole-nisa-binding
 roleRef:
@@ -580,14 +580,14 @@ spec:
   - name: proxy
     port: 80
     protocol: TCP
-    targetPort: 31115
+    targetPort: 8000
   - name: proxy-ssl
     port: 443
     protocol: TCP
-    targetPort: 31116
+    targetPort: 8443
   selector:
     app: ingress-kong
-  type: NodePort
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -602,6 +602,20 @@ spec:
     targetPort: 8080
   selector:
     app: ingress-kong
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: kong
+spec:
+  ports:
+  - name: pgql
+    port: 5432
+    protocol: TCP
+    targetPort: 5432
+  selector:
+    app: postgres
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -629,6 +643,12 @@ spec:
         group: bj
       containers:
       - env:
+        - name: KONG_DATABASE
+          value: postgres
+        - name: KONG_PG_HOST
+          value: 106.14.148.37
+        - name: KONG_PG_PASSWORD
+          value: 11111111
         - name: KONG_PROXY_LISTEN
           value: 0.0.0.0:8000, 0.0.0.0:8443 ssl http2
         - name: KONG_PORT_MAPS
@@ -637,8 +657,6 @@ spec:
           value: 127.0.0.1:8444 ssl
         - name: KONG_STATUS_LISTEN
           value: 0.0.0.0:8100
-        - name: KONG_DATABASE
-          value: "off"
         - name: KONG_NGINX_WORKER_PROCESSES
           value: "2"
         - name: KONG_ADMIN_ACCESS_LOG
@@ -730,4 +748,103 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
+      initContainers:
+      - command:
+        - /bin/sh
+        - -c
+        - while true; do kong migrations list; if [[ 0 -eq $? ]]; then exit 0; fi; sleep 2;  done;
+        env:
+        - name: KONG_PG_HOST
+          value: 106.14.148.37
+        - name: KONG_PG_PASSWORD
+          value: 11111111
+        image: kong:2.3
+        name: wait-for-migrations
       serviceAccountName: kong-serviceaccount
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: kong
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  serviceName: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      nodeSelector:
+        group: bj
+      containers:
+      - env:
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: 11111111
+        - name: POSTGRES_DB
+          value: postgres
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        image: postgres:9.5
+        name: postgres
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: datadir
+          subPath: pgdata
+      terminationGracePeriodSeconds: 60
+  volumeClaimTemplates:
+  - metadata:
+      name: datadir
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kong-migrations
+  namespace: kong
+spec:
+  template:
+    metadata:
+      name: kong-migrations
+    spec:
+      nodeSelector:
+        group: bj
+      containers:
+      - command:
+        - /bin/sh
+        - -c
+        - kong migrations bootstrap
+        env:
+        - name: KONG_PG_PASSWORD
+          value: 11111111
+        - name: KONG_PG_HOST
+          value: 106.14.148.37
+        - name: KONG_PG_PORT
+          value: "5432"
+        image: kong:2.3
+        name: kong-migrations
+      initContainers:
+      - command:
+        - /bin/sh
+        - -c
+        - until nc -zv $KONG_PG_HOST $KONG_PG_PORT -w1; do echo 'waiting for db'; sleep 1; done
+        env:
+        - name: KONG_PG_HOST
+          value: 106.14.148.37
+        - name: KONG_PG_PORT
+          value: "5432"
+        image: busybox
+        name: wait-for-postgres
+      restartPolicy: OnFailure
