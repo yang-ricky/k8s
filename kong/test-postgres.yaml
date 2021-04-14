@@ -18,8 +18,10 @@ metadata:
   labels:
     type: local
 spec:
+  accessModes: #访问模式
+  - ReadWriteOnce
   capacity:
-    storage: 2Gi
+    storage: 4Gi
   hostPath:
     path: "/root"
 ---
