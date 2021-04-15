@@ -3,29 +3,6 @@ kind: Namespace
 metadata:
   name: postgres
 ---
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: fast
-provisioner: kubernetes.io/gce-pd
-parameters:
-  type: pd-ssd
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: aliyun-volume
-  labels:
-    type: local
-spec:
-  storageClassName: fast
-  accessModes: #访问模式
-  - ReadWriteOnce
-  capacity:
-    storage: 4Gi
-  hostPath:
-    path: "/root"
----
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -66,17 +43,11 @@ spec:
           volumeMounts:
             - name: postgres-data
               mountPath: /var/lib/postgresql/data
-              subPath: postgres
-  volumeClaimTemplates:
-    - metadata:
-        name: postgres-data
-      spec:
-        storageClassName: ""
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 1Gi
+              subPath: postgres-pv-claim
+          volumes:
+            - name: postgres-pv-claim
+              persistentVolumeClaim:
+                claimName: postgres-pv-claim
 ---
 apiVersion: v1
 kind: Service
