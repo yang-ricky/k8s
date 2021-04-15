@@ -761,53 +761,6 @@ spec:
         name: wait-for-migrations
       serviceAccountName: kong-serviceaccount
 ---
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: postgres
-  namespace: kong
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: postgres
-  serviceName: postgres
-  template:
-    metadata:
-      labels:
-        app: postgres
-    spec:
-      nodeName: yang-bj-1
-      containers:
-      - env:
-        - name: POSTGRES_USER
-          value: kong
-        - name: POSTGRES_PASSWORD
-          value: kong
-        - name: POSTGRES_DB
-          value: kong
-        - name: PGDATA
-          value: /var/lib/postgresql/data/pgdata
-        image: postgres:9.5
-        name: postgres
-        ports:
-        - containerPort: 5432
-        volumeMounts:
-        - mountPath: /var/lib/postgresql/data
-          name: datadir
-          subPath: data #subpath具体的含义
-      terminationGracePeriodSeconds: 60
-  volumeClaimTemplates:
-  - metadata:
-      name: datadir
-    spec:
-      accessModes:
-      - ReadWriteOnce
-      storageClassName: gp2
-      resources:
-        requests:
-          storage: 2Gi
----
 apiVersion: batch/v1
 kind: Job
 metadata:
