@@ -71,8 +71,9 @@ spec:
     - metadata:
         name: postgres-data
       spec:
-        storageClassName: fast
-        accessModes: ["ReadWriteOnce"]
+        storageClassName: ""
+        accessModes:
+          - ReadWriteOnce
         resources:
           requests:
             storage: 1Gi

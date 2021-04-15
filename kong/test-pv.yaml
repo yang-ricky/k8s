@@ -1,19 +1,19 @@
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mongodb-pvc
-spec:
-  resources:
-    requests:
-      storage: 1Gi
-  accessModes:
-  - ReadWriteOnce
-  storageClassName: ""
----
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: postgres-pv
+# spec:
+#   resources:
+#     requests:
+#       storage: 1Gi
+#   accessModes:
+#   - ReadWriteOnce
+#   storageClassName: ""
+# ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: mongodb-pv
+  name: postgres-pv
 spec:
   capacity:
     storage: 1Gi
@@ -22,5 +22,5 @@ spec:
   - ReadOnlyMany
   persistentVolumeReclaimPolicy: Retain
   gcePersistentDisk:
-    pdName: mongodb
+    pdName: postgres
     fsType: ext4
