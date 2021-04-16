@@ -9,10 +9,10 @@ metadata:
   namespace: kong
 spec:
   rules:
-  - host: kong-proxy-admin.bj1.com
+  - host: kong.ingress.com
     http:
       paths:
       - backend:
           serviceName: kong-proxy
           servicePort: 8001 
-        path: /test
+        path: /proxy

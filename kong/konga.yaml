@@ -78,10 +78,10 @@ metadata:
   namespace: kong
 spec:
   rules:
-  - host: bj1.ricky.pro
+  - host: kong.ingress.com
     http:
       paths:
       - backend:
           serviceName: konga-svc
           servicePort: 443
-        path: /kong-portal
+        path: /portal
