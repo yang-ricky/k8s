@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    ingresscontroller: kong
+  annotations:
+    kubernetes.io/ingress.class: kong 
+  name: kong-proxy
+  namespace: kong
+spec:
+  rules:
+  - host: kong-proxy-admin.bj1.com
+    http:
+      paths:
+      - backend:
+          serviceName: kong-proxy
+          servicePort: 8001 
+        path: /
