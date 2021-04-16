@@ -581,18 +581,22 @@ spec:
     port: 80
     protocol: TCP
     targetPort: 8000
+    nodePort: 38000  # 暴露给外网的端口
   - name: proxy-ssl
     port: 443
     protocol: TCP
     targetPort: 8443
+    nodePort: 38443  # 暴露给外网的端口
   - name: kong-admin
     port: 8001
     protocol: TCP
     targetPort: 8001
+    nodePort: 38001  # 暴露给外网的端口
   - name: kong-admin-ssl
     port: 8444
     protocol: TCP
     targetPort: 8444
+    nodePort: 38444  # 暴露给外网的端口
   selector:
     app: ingress-kong
   type: NodePort
