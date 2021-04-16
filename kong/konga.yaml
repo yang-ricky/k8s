@@ -60,6 +60,7 @@ metadata:
   name: konga-svc
   namespace: kong
 spec:
+  type: NodePort
   ports:
     - protocol: TCP
       port: 443
