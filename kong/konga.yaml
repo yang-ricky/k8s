@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kongcreds
+  namespace: kong 
+type: Opaque
+data:
+  username: a29uZw== 
+  password: MTIzNDU2 
+  postgresdbname: a29uZw==
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: konga
+  namespace: kong
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: konga
+  template:
+    metadata:
+      labels:
+        name: konga
+        app: konga
+    spec:
+      containers:
+      - name: konga
+        image: pantsel/konga:latest 
+        env:
+        - name: DB_ADAPTER
+          value: postgres
+        - name: DB_HOST
+          value: 106.14.148.37
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: kongcreds
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: kongcreds
+              key: password
+        - name: DB_DATABASE
+          value: kong
+        - name: TOKEN_SECRET
+          value: somesecretstring
+        ports:
+        - containerPort: 1337
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: konga
+  name: konga-svc
+  namespace: kong
+spec:
+  ports:
+    - protocol: TCP
+      port: 443
+      targetPort: 1337
+  selector:
+    app: konga
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    ingresscontroller: kong
+  annotations:
+    kubernetes.io/ingress.class: kong 
+  name: kong-admin
+  namespace: kong
+spec:
+  rules:
+  - host: bj1.ricky.pro
+    http:
+      paths:
+      - backend:
+          serviceName: konga-svc
+          servicePort: 443
+        path: /kong-portal
