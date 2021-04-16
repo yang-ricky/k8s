@@ -15,4 +15,4 @@ spec:
       - backend:
           serviceName: kong-proxy
           servicePort: 8001 
-        path: /
+        path: /test
