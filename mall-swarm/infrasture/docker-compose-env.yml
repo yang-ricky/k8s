@@ -50,7 +50,7 @@ services:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小
       - "http.port=9200"
       - "http.cors.enabled=true"
-      - "http.cors.allow-origin=http://localhost:1358,http://127.0.0.1:1358,http://101.132.172.54:1358"
+      - "http.cors.allow-origin=http://localhost:1358,http://127.0.0.1:1358,http://101.132.172.54:1358,http://sh2.ricky.pro:1358"
       - "http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization"
       - "http.cors.allow-credentials=true"
     #volumes:
