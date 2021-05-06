@@ -43,16 +43,16 @@ services:
   elasticsearch:
     image: elasticsearch:7.6.2
     container_name: elasticsearch
-    user: root
+    #user: root
     environment:
       - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
       - "discovery.type=single-node" #以单一节点模式启动
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小
-      - http.port=9200
-      - http.cors.enabled=true
-      - http.cors.allow-origin=http://localhost:1358,http://127.0.0.1:1358
-      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
-      - http.cors.allow-credentials=true
+      - "http.port=9200"
+      - "http.cors.enabled=true"
+      - "http.cors.allow-origin=http://localhost:1358,http://127.0.0.1:1358,http://101.132.172.54:1358"
+      - "http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization"
+      - "http.cors.allow-credentials=true"
     #volumes:
     #  - /mydata/elasticsearch/plugins:/usr/share/elasticsearch/plugins #插件文件挂载, 这里会导致kibana起不来
     #  - /mydata/elasticsearch/data:/usr/share/elasticsearch/data #数据文件挂载, 这里会导致kibana起不来
