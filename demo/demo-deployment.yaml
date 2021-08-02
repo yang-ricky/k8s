@@ -40,13 +40,13 @@ metadata:
   name: demo-svc
 spec:
   ports:
-  - port: 80
-    targetPort: 80 # Docker实例的端口
+  - port: 80 # 集群内部可以访问的端口. 备注  -p 20180:80， 80代表容器端口，20180代表主机端口
+    targetPort: 80 # Docker实例的端口 - 最保守的
     nodePort: 31112  # 暴露给外网的端口
     protocol: TCP
     name: http
-  - port: 443
-    targetPort: 443 # Docker实例的端口
+  - port: 443 #  集群内部可以访问的端口
+    targetPort: 443 # Docker实例的端口 - 最保守的
     nodePort: 31113  # 暴露给外网的端口
     protocol: TCP
     name: https
